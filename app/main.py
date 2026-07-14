@@ -9,7 +9,9 @@ Base.metadata.create_all(bind=engine)
 
 # Create FastAPI app
 app = FastAPI(
-    title="Task Manager API"
+    title="TaskFlow API",
+    description="A REST API for managing tasks",
+    version="1.0.0"
 )
 
 # Home endpoint
