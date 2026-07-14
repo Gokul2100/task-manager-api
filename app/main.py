@@ -1,6 +1,8 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 
+from fastapi.middleware.cors import CORSMiddleware
+
 from .database import Base, engine, get_db
 from . import crud, models, schemas
 
@@ -13,7 +15,13 @@ app = FastAPI(
     description="A REST API for managing tasks",
     version="1.0.0"
 )
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # We'll restrict this later
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # Home endpoint
 @app.get("/")
 def home():
